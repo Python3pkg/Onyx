@@ -9,6 +9,6 @@ You may not use this software for commercial purposes.
 @author :: Cassim Khouani
 """
 
-from manage import Run
+from .manage import Run
 
 Run().run()

@@ -28,7 +28,7 @@ if version_info >= (2, 6, 0):
     _snowboydetect = swig_import_helper()
     del swig_import_helper
 else:
-    import _snowboydetect
+    from . import _snowboydetect
 del version_info
 try:
     _swig_property = property

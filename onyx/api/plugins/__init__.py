@@ -49,7 +49,7 @@ class Plugin:
                 try:
                     e['index'] = data['index']
                 except KeyError:
-                    print('No view for ' + data['name'])
+                    print(('No view for ' + data['name']))
                 plug.append(e)
             return json.encode(plug)
         except Exception as e:

@@ -36,7 +36,7 @@ class Bot:
     def get(self):
         try:
             response = str(self.kernel.get_response(self.text))
-            return json.encode({"status":"success","type":"notification","text":response,"next":self.next})
+            return json.encode({"status":"success","type":"notification","text":response,"next":self.__next__})
         except Exception as e:
             logger.error('Getting sentence error : ' + str(e))
             raise GetException(str(e))
@@ -46,14 +46,14 @@ class Bot:
             if self.type_event == 'notification':
                 function = getattr(importlib.import_module(self.app.view_functions[self.url].__module__), self.app.view_functions[self.url].__name__)
                 execute = function()
-                return json.encode({"status":"success","type":"notification","text":execute,"next":self.next})
+                return json.encode({"status":"success","type":"notification","text":execute,"next":self.__next__})
             elif self.type_event == 'exec':
                 function = getattr(importlib.import_module(self.app.view_functions[self.url].__module__), self.app.view_functions[self.url].__name__)
                 try:
                     execute = function(self.param)
                 except:
                     execute = function()
-                return json.encode({"status":"success","type":"exec","next":self.next,"text":execute})
+                return json.encode({"status":"success","type":"exec","next":self.__next__,"text":execute})
         except Exception as e:
             logger.error('Getting Response error : ' + str(e))
             raise SentenceException(str(e))

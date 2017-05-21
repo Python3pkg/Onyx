@@ -30,7 +30,7 @@ class User(db.Model):
 
     def get_id(self):
         try:
-            return unicode(self.id)  # python 2
+            return str(self.id)  # python 2
         except NameError:
             return str(self.id)  # python 3
 

@@ -18,6 +18,7 @@ import abc
 import imp
 
 from os.path import join, dirname, splitext, isdir
+import collections
 
 config = get_config('onyx')
 lang = config.get('Base', 'lang')
@@ -41,24 +42,24 @@ MainModule = '__init__'
 
 def load_skill(skill_descriptor):
     try:
-        print("ATTEMPTING TO LOAD SKILL: " + skill_descriptor["name"])
+        print(("ATTEMPTING TO LOAD SKILL: " + skill_descriptor["name"]))
         skill_module = imp.load_module(
             skill_descriptor["name"] + MainModule, *skill_descriptor["info"])
         if (hasattr(skill_module, 'create') and
-                callable(skill_module.create)):
+                isinstance(skill_module.create, collections.Callable)):
             skill = skill_module.create()
             #skill.initialize()
-            print("Loaded " + skill_descriptor["name"])
+            print(("Loaded " + skill_descriptor["name"]))
             return skill
         else:
-            print("Module %s does not appear to be skill" % (skill_descriptor["name"]))
+            print(("Module %s does not appear to be skill" % (skill_descriptor["name"])))
     except:
-        print("Failed to load skill: " + skill_descriptor["name"])
+        print(("Failed to load skill: " + skill_descriptor["name"]))
         raise
 
 
 def get_skills(skills_folder):
-    print("LOADING SKILLS FROM " + skills_folder)
+    print(("LOADING SKILLS FROM " + skills_folder))
     skills = []
     possible_skills = os.listdir(skills_folder)
     for i in possible_skills:
@@ -86,7 +87,7 @@ def create_skill_descriptor(skill_folder):
 
 
 def load_skills(skills_root=SKILLS_BASEDIR):
-    print("Checking " + skills_root + " for new skills")
+    print(("Checking " + skills_root + " for new skills"))
     skill_list = []
     skills = get_skills(skills_root)
     for skill in skills:
@@ -135,7 +136,7 @@ class OnyxSkill(object):
         self.return_tts()
 
     def return_text(self):
-        print("Response: " + self.response)
+        print(("Response: " + self.response))
 
     def return_tts(self):
         if self.response == "Your language is not available in Onyx":

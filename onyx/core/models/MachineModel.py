@@ -22,6 +22,6 @@ class Machine(db.Model):
 
     def get_id_(self):
         try:
-            return unicode(self.id)
+            return str(self.id)
         except NameError:
             return str(self.id)

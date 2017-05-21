@@ -12,7 +12,7 @@ import os
 import sys
 
 try:
-    import Onyx
+    from . import Onyx
     os.system('sudo onyx run -p 80')
 except:
     os.system('sudo apt-get update')

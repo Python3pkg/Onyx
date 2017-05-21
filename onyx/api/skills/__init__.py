@@ -46,7 +46,7 @@ class Skill:
                 try:
                     e['index'] = data['index']
                 except KeyError:
-                    print('No view for ' + data['name'])
+                    print(('No view for ' + data['name']))
                 skill_tab.append(e)
             return json.encode(skill_tab)
         except Exception as e:

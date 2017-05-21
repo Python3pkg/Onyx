@@ -111,7 +111,7 @@ def get_blueprints(app):
         try:
             BLUEPRINTS.append(module.get_blueprint())
         except:
-            print('No Blueprint for module : ' + module.get_name())
+            print(('No Blueprint for module : ' + module.get_name()))
 
     for blueprint in BLUEPRINTS:
         @blueprint.before_request

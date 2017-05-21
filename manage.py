@@ -19,11 +19,11 @@ from flask_script import Manager, Command, Option
 
 import os
 
-from onyx import *
-from onyx.extensions import db
-from onyx.api.server import *
-from onyx.flask_config import *
-import onyx
+from .onyx import *
+from .onyx.extensions import db
+from .onyx.api.server import *
+from .onyx.flask_config import *
+from . import onyx
 
 app = create_app()
 

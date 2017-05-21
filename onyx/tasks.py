@@ -22,7 +22,7 @@ def do_some_stuff():
 
 @task_postrun.connect
 def close_session(*args, **kwargs):
-    from extensions import db
+    from .extensions import db
     # Flask SQLAlchemy will automatically create new sessions for you from
     # a scoped session factory, given that we are maintaining the same app
     # context, this ensures tasks have a fresh session (e.g. session errors

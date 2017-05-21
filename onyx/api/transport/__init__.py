@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 try:
 	import urllib.request
 except ImportError:
-	import urllib
+	import urllib.request, urllib.parse, urllib.error
 
 logger = logging.getLogger()
 json = Json()
@@ -40,7 +40,7 @@ class Ratp:
 				try:
 					html = urllib.request.urlopen('http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/' + self.station + '/' + self.line + '/' + self.direction).read()
 				except:
-					html = urllib.urlopen('http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/' + self.station + '/' + self.line + '/' + self.direction).read()
+					html = urllib.request.urlopen('http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/' + self.station + '/' + self.line + '/' + self.direction).read()
 					ratp = BeautifulSoup(html)
 					result = json.encode({"line" : ratp.findAll('img')[24].get('alt'), "station" : ratp.findAll('span')[21].string,"direction" : ratp.findAll('td')[1].string,"name1": ratp.findAll('td')[1].string , "horaire1": ratp.findAll('td')[2].string , "name2": ratp.findAll('td')[3].string , "horaire2": ratp.findAll('td')[4].string , "name3": ratp.findAll('td')[5].string , "horaire3": ratp.findAll('td')[6].string , "name4": ratp.findAll('td')[7].string , "horaire4": ratp.findAll('td')[8].string})
 				return result
@@ -54,7 +54,7 @@ class Ratp:
 				try:
 					html = urllib.request.urlopen('http://www.ratp.fr/horaires/fr/ratp/rer/prochains_passages/' + self.line + '/' + self.station + '/' + self.direction).read()
 				except:
-					html = urllib.urlopen('http://www.ratp.fr/horaires/fr/ratp/rer/prochains_passages/' + self.line + '/' + self.station + '/' + self.direction).read()
+					html = urllib.request.urlopen('http://www.ratp.fr/horaires/fr/ratp/rer/prochains_passages/' + self.line + '/' + self.station + '/' + self.direction).read()
 					ratp = BeautifulSoup(html)
 					result = json.encode({"line" : ratp.findAll('img')[24].get('alt'), "station" : ratp.findAll('span')[21].string,"direction" : ratp.findAll('td')[1].string,"name1": ratp.findAll('td')[1].string , "horaire1": ratp.findAll('td')[2].string , "name2": ratp.findAll('td')[3].string , "horaire2": ratp.findAll('td')[4].string , "name3": ratp.findAll('td')[5].string , "horaire3": ratp.findAll('td')[6].string , "name4": ratp.findAll('td')[7].string , "horaire4": ratp.findAll('td')[8].string})
 				return result

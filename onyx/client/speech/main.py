@@ -43,13 +43,13 @@ class Detector:
 
 		try:
 			result = stt.execute(audio, language=str(self.lang))
-			print("You said: " + result)
+			print(("You said: " + result))
 			skills.text = result
 			skills.get_response()
 		except sr.UnknownValueError:
 			print("Speech Recognition could not understand audio")
 		except sr.RequestError as e:
-			print("Could not request results from Speech Recognition service; {0}".format(e))
+			print(("Could not request results from Speech Recognition service; {0}".format(e)))
 
 	def start(self):
 		detector = snowboydecoder.HotwordDetector(onyx.__path__[0] + "/client/speech/Onyx.pmdl", sensitivity=0.5, audio_gain=1)

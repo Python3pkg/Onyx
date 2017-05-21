@@ -36,8 +36,8 @@ class Config(object):
     ACCEPT_LANGUAGES = ['en', 'fr' ]
     # available languages
     LANGUAGES = {
-        'en': u'English',
-        'fr': u'Français'
+        'en': 'English',
+        'fr': 'Français'
     }
 
 
